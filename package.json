@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "chai": "^4.3.6",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3",
+    "rewire": "^6.0.0",
+    "sinon": "^14.0.0"
+  },
+  "devDependencies": {
+    "supertest": "^6.2.3"
+  },
+  "name": "tests-nodejs",
+  "description": "tests-nodejs",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codefaztaz/tests-nodejs.git"
+  },
+  "keywords": [
+    "unit",
+    "testing",
+    "with",
+    "mocha"
+  ],
+  "author": "rafael hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codefaztaz/tests-nodejs/issues"
+  },
+  "homepage": "https://github.com/codefaztaz/tests-nodejs#readme"
+}
