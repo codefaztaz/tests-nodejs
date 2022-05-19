@@ -1,10 +1,14 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcrypt-nodejs": "^0.0.3",
     "chai": "^4.3.6",
     "express": "^4.18.1",
     "mongoose": "^6.3.3",
+    "nodemon": "^2.0.16",
     "rewire": "^6.0.0",
-    "sinon": "^14.0.0"
+    "sinon": "^14.0.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "supertest": "^6.2.3"
@@ -12,8 +16,9 @@
   "name": "tests-nodejs",
   "description": "tests-nodejs",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "npm test"
   },
   "repository": {
