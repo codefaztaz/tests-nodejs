@@ -11,7 +11,7 @@ var controller = {
 
 user: function(req, res)
 {
-    users.create(req.body).then((result) => {
+    User.create(req.body).then((result) => {
         res.json(result);
     }).catch((err) => {
         handleError(res, err);
@@ -21,7 +21,7 @@ user: function(req, res)
 
 getUser: function(req,res)
 {
-    users.get(req.params.id, function (err, result) {
+    User.findById(req.params.id, function (err, result) {
         if (err) {
             return handleError(err);
         }
@@ -34,7 +34,7 @@ getUser: function(req,res)
 update: function(req, res)
 {
     // res.send('User route')
-    users.update(req.params.id, req.body).then((result) => {
+    User.update(req.params.id, req.body).then((result) => {
         res.json(result);
     }).catch((err) => {
         handleError(res, err);
@@ -44,7 +44,7 @@ update: function(req, res)
 
 delete:function(req,res)
 {
-    users.delete({id: req.params.id, name: 'foo'}).then((result) => {
+    User.delete({id: req.params.id, name: 'foo'}).then((result) => {
         res.json(result);
     }).catch((err) => {
         handleError(res, err);
