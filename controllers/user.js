@@ -34,7 +34,7 @@ getUser: function(req,res)
 update: function(req, res)
 {
     // res.send('User route')
-    User.update(req.params.id, req.body).then((result) => {
+    User.findOneAndUpdate(req.params.id, req.body).then((result) => {
         res.json(result);
     }).catch((err) => {
         handleError(res, err);
@@ -44,8 +44,9 @@ update: function(req, res)
 
 delete:function(req,res)
 {
-    User.delete({id: req.params.id, name: 'foo'}).then((result) => {
+    User.findOneAndDelete({id: req.params.id, name: 'foo'}).then((result) => {
         res.json(result);
+        console.log('usuario eliminado', result);
     }).catch((err) => {
         handleError(res, err);
     });
