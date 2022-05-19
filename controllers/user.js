@@ -29,7 +29,30 @@ getUser: function(req,res)
         res.json(result);
     });
 
+},
+
+update: function(req, res)
+{
+    // res.send('User route')
+    users.update(req.params.id, req.body).then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        handleError(res, err);
+    });
+
+},
+
+delete:function(req,res)
+{
+    users.delete({id: req.params.id, name: 'foo'}).then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        handleError(res, err);
+    });
+
 }
+
+
 
 
 
