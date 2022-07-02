@@ -26,7 +26,7 @@ getUser: function(req,res)
             return handleError(err);
         }
 
-        res.json(result);
+        return res.json(result);
     });
 
 },
