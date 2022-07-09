@@ -65,7 +65,7 @@ describe('users', ()=>{
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
-                res.body.length.should.be.eql(3);
+                res.body.length.should.be.eql(19);
             done();
           });
           
@@ -97,7 +97,32 @@ describe('users', ()=>{
             done();
           });
           
-        })
+        });
+
+        // it('should post a user', (done)=>{
+        //     let userStored = {
+        //         name : "susana",
+        //         email: "susana@gmail.com",
+        //         age: 34
+        //     }
+        //     chai.request('http://localhost:3999/api/')
+        //     .post('save')
+        //     .send(userStored)
+        //     .end((err, res) => {
+        //         res.should.have.status(200);
+        //         res.body.should.be.a('object');
+        //         res.body.should.have.property('status').eql('success');
+        //         res.body.userStored.should.have.property('_id');
+        //         res.body.userStored.should.have.property('name');
+        //         res.body.userStored.should.have.property('email');
+        //         res.body.userStored.should.have.property('age');
+        //         res.body.userStored.should.have.property('__v');
+             
+                  
+        //     done();  
+        //     });
+            
+        // });
     })
 
 })

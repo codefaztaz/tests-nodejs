@@ -13,7 +13,7 @@ var md_auth = require('../middleware/auth');
 
 
 // Rutas de usuarios
-router.post('/user', UserController.user);
+router.post('/save/', UserController.save);
 router.get('/user/:id', UserController.getUser);
 router.get('/users/', UserController.getUsers);
 router.put('/update/:id', UserController.update);

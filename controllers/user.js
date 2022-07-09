@@ -9,13 +9,38 @@ var User = require('../models/user');
 
 var controller = {
 
-user: function(req, res)
+save: function(req, res)
 {
-    User.create(req.body).then((result) => {
-        res.json(result);
-    }).catch((err) => {
-        handleError(res, err);
-    });
+    var params = req.body;
+    var user = new User();
+
+    user.name = params.name;
+    user.email = params.email;
+    user.age = params.age;
+
+
+    user.save((err, userStored) => {
+        if (err) {
+            return res.status(500).send({
+                message: "Error al guardar el usuario"
+            });
+        }
+
+        if (!userStored) {
+            return res.status(400).send({
+                message: "El usuario no se ha guardado"
+            });
+        }
+
+        // Devolver respuesta
+        return res.status(200).send({
+            status: 'success',
+            userStored
+        });
+
+
+
+    }); // close save
 
 },
 
