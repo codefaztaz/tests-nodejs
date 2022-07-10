@@ -87,12 +87,14 @@ update: function(req, res)
     var userId = req.params.id;
     console.log('userid', userId);
     User.findOneAndUpdate({ _id: userId }, params, { new: true }, (err, userUpdated) => {
-
+        console.log(err);
         if (err) {
             return res.status(500).send({
                 status: 'error 500',
                 message: 'Error al actualizar usuario'
+                
             });
+           
         }
 
         if (!userUpdated) {
