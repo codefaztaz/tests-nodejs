@@ -66,15 +66,49 @@ getUsers: function(req, res) {
     });
 },
 
+// update: function(req, res)
+// {
+    
+//     // res.send('User route')
+//     User.findOneAndUpdate(req.params.id, req.body).then((result) => {
+//         res.json(result);
+//     }).catch((err) => {
+//         handleError(res, err);
+//     });
+
+// },
+
 update: function(req, res)
 {
-    // res.send('User route')
-    User.findOneAndUpdate(req.params.id, req.body).then((result) => {
-        res.json(result);
-    }).catch((err) => {
-        handleError(res, err);
-    });
+    var params = JSON.parse(JSON.stringify(req.body));
+   // var params = req.body;
+    params.age = Number(req.body.age);
+    console.log('params',params);
+    var userId = req.params.id;
+    console.log('userid', userId);
+    User.findOneAndUpdate({ _id: userId }, params, { new: true }, (err, userUpdated) => {
 
+        if (err) {
+            return res.status(500).send({
+                status: 'error 500',
+                message: 'Error al actualizar usuario'
+            });
+        }
+
+        if (!userUpdated) {
+            return res.status(200).send({
+                status: 'error',
+                message: 'No se a actualizado el usuario'
+            });
+        }
+
+        // Devolver respuesta
+        return res.status(200).send({
+            status: 'success',
+            user: userUpdated
+        });
+
+    });
 },
 
 delete:function(req,res)

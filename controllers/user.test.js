@@ -65,7 +65,7 @@ describe('users', ()=>{
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
-                res.body.length.should.be.eql(19);
+                res.body.length.should.be.eql(20);
             done();
           });
           
@@ -123,6 +123,23 @@ describe('users', ()=>{
         //     });
             
         // });
-    })
+
+        it('it should UPDATE a book given the id', (done)=>{
+            let bookId="62c937b6fa7be991d306b7d6";
+            chai.request('http://localhost:3999/api/')
+            
+            .put('update/'+ bookId)
+            .send({name: "jodete", email:"mira@hotmail.com", age: 26})
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('status').eql('success');
+                res.body.user.should.have.property('age').eql(26);
+
+            done();
+        });
+    });
+
+});
 
 })
