@@ -115,9 +115,21 @@ update: function(req, res)
 
 delete:function(req,res)
 {
-    User.findOneAndDelete({id: req.params.id, name: 'foo'}).then((result) => {
-        res.json(result);
-        console.log('usuario eliminado', result);
+    // User.findOneAndDelete({id: req.params.id, name: 'foo'}).then((result) => {
+    //     res.json(result);
+    //     console.log('usuario eliminado', result);
+    // }).catch((err) => {
+    //     handleError(res, err);
+    // });
+
+    User.findOneAndDelete({id: req.params.id}).then((result) => {
+        //res.json(result);
+        // Devolver respuesta
+        return res.status(200).send({
+            status: 'user deleted',
+            user: result
+        
+       });
     }).catch((err) => {
         handleError(res, err);
     });

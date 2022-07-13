@@ -86,49 +86,49 @@ describe('users', ()=>{
         //     })
         // })
 
-        it('should get a user with his ID', (done)=>{
-           const  userID= '628661634ff314d839e811de';
-            chai.request('http://localhost:3999/api/')
-            .get('user/' + userID)
-            .end((err, res) => {
-                //res.should.have.status(200);
-                res.body.should.have.property('name').eql('pedro');
-                //res.body.length.should.be.eql(3);
-            done();
-          });
-          
-        });
-
-        // it('should post a user', (done)=>{
-        //     let userStored = {
-        //         name : "susana",
-        //         email: "susana@gmail.com",
-        //         age: 34
-        //     }
+        // it('should get a user with his ID', (done)=>{
+        //    const  userID= '628661634ff314d839e811de';
         //     chai.request('http://localhost:3999/api/')
-        //     .post('save')
-        //     .send(userStored)
+        //     .get('user/' + userID)
         //     .end((err, res) => {
-        //         res.should.have.status(200);
-        //         res.body.should.be.a('object');
-        //         res.body.should.have.property('status').eql('success');
-        //         res.body.userStored.should.have.property('_id');
-        //         res.body.userStored.should.have.property('name');
-        //         res.body.userStored.should.have.property('email');
-        //         res.body.userStored.should.have.property('age');
-        //         res.body.userStored.should.have.property('__v');
-             
-                  
-        //     done();  
-        //     });
-            
+        //         //res.should.have.status(200);
+        //         res.body.should.have.property('name').eql('pedro');
+        //         //res.body.length.should.be.eql(3);
+        //     done();
+        //   });
+          
         // });
 
-        it('it should UPDATE a book given the id', (done)=>{
-            let bookId="62c937b6fa7be991d306b7d6";
+        it('should post a user', (done)=>{
+            let userStored = {
+                name : "susana",
+                email: "susana@gmail.com",
+                age: 34
+            }
+            chai.request('http://localhost:3999/api/')
+            .post('save')
+            .send(userStored)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('status').eql('success');
+                res.body.userStored.should.have.property('_id');
+                res.body.userStored.should.have.property('name');
+                res.body.userStored.should.have.property('email');
+                res.body.userStored.should.have.property('age');
+                res.body.userStored.should.have.property('__v');
+             
+                  
+            done();  
+            });
+            
+        });
+
+        it('it should UPDATE a user given the id', (done)=>{
+            let userId="62c937b6fa7be991d306b7d6";
             chai.request('http://localhost:3999/api/')
             
-            .put('update/'+ bookId)
+            .put('update/'+ userId)
             .send({name: "jodete", email:"mira@hotmail.com", age: 26})
             .end((err, res) => {
                 res.should.have.status(200);
@@ -140,6 +140,24 @@ describe('users', ()=>{
         });
     });
 
+       it('it should DELETE a user by the id', (done)=>{
+            let userId="62c935e73bc86de19b67b368";
+            chai.request('http://localhost:3999/api/')
+            .delete('delete/'+ userId)
+            .end((err,res)=>{
+                res.should.have.status(200);
+                      res.body.should.be.a('object');
+                      res.body.should.have.property('status').eql('user deleted');
+            done();
+            });
+       });
+
+
+
+
 });
 
 })
+
+
+//ObjectId("62c935e73bc86de19b67b368")
