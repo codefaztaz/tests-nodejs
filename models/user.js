@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var UserSchema = mongoose.Schema({
     name: {type: String, required: true},
     email: {type: String, required: true},
-    age: {type: Number}
+    age: {type: Number},
+    image: {Type: String}
 }, {
     collection: 'users'
 }); //overrides default collection name auto created

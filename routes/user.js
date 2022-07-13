@@ -7,6 +7,9 @@ var UserController = require('../controllers/user');
 var router = express.Router();
 var md_auth = require('../middleware/auth');
 
+var multipart = require('connect-multiparty');
+var md_upload = multipart({ uploadDir: './uploads/rooms' });
+
 //var multipart = require('connect-multiparty');
 //var md_upload = multipart({ uploadDir: './uploads/rooms' });
 
@@ -14,6 +17,7 @@ var md_auth = require('../middleware/auth');
 
 // Rutas de usuarios
 router.post('/save/', UserController.save);
+router.post('/upload-avatar',md_upload, UserController.uploadAvatar);
 router.get('/user/:id', UserController.getUser);
 router.get('/users/', UserController.getUsers);
 router.put('/update/:id', UserController.update);

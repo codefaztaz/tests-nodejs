@@ -1,1 +1,0 @@
-{"parent":null,"pid":19541,"argv":["/usr/local/bin/node","/usr/local/bin/npm","test","--reporter=html","mocha"],"execArgv":[],"cwd":"/var/www/html/tests-nodejs","time":1657708082296,"ppid":19530,"coverageFilename":"/var/www/html/tests-nodejs/.nyc_output/d1390fd5-f7bf-40a7-9476-8925d4361726.json","externalId":"","uuid":"d1390fd5-f7bf-40a7-9476-8925d4361726","files":[]}

@@ -44,6 +44,12 @@ save: function(req, res)
 
 },
 
+uploadAvatar: function(req,res)
+{
+    console.log(JSON.stringify(req.files.file0.path));
+
+},
+
 getUser: function(req,res)
 {
     User.findById(req.params.id, function (err, result) {
