@@ -86,18 +86,18 @@ describe('users', ()=>{
         //     })
         // })
 
-        // it('should get a user with his ID', (done)=>{
-        //    const  userID= '628661634ff314d839e811de';
-        //     chai.request('http://localhost:3999/api/')
-        //     .get('user/' + userID)
-        //     .end((err, res) => {
-        //         //res.should.have.status(200);
-        //         res.body.should.have.property('name').eql('pedro');
-        //         //res.body.length.should.be.eql(3);
-        //     done();
-        //   });
+        it.skip('should get a user with his ID', (done)=>{
+           const  userID= '628661634ff314d839e811de';
+            chai.request('http://localhost:3999/api/')
+            .get('user/' + userID)
+            .end((err, res) => {
+                //res.should.have.status(200);
+                res.body.should.have.property('name').eql('pedro');
+                //res.body.length.should.be.eql(3);
+            done();
+          });
           
-        // });
+        });
 
         it('should post a user', (done)=>{
             let userStored = {
