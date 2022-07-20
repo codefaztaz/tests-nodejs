@@ -59,7 +59,7 @@ describe('users', ()=>{
 
 
 
-        it('should have 200 code response', (done)=>{
+        it.skip('should have 200 code response', (done)=>{
             chai.request('http://localhost:3999/api/')
             .get('users')
             .end((err, res) => {
@@ -124,7 +124,7 @@ describe('users', ()=>{
             
         });
 
-        it('it should UPDATE a user given the id', (done)=>{
+        it.skip('it should UPDATE a user given the id', (done)=>{
             let userId="62c937b6fa7be991d306b7d6";
             chai.request('http://localhost:3999/api/')
             
