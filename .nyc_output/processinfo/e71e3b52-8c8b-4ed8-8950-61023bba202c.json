@@ -1,0 +1,1 @@
+{"parent":null,"pid":10459,"argv":["/usr/local/bin/node","/usr/local/bin/mocha","test/**/*.js","--exit"],"execArgv":[],"cwd":"/var/www/html/tests-nodejs","time":1657821700392,"ppid":9783,"coverageFilename":"/var/www/html/tests-nodejs/.nyc_output/e71e3b52-8c8b-4ed8-8950-61023bba202c.json","externalId":"","uuid":"e71e3b52-8c8b-4ed8-8950-61023bba202c","files":[]}

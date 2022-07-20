@@ -12,15 +12,19 @@ var controller = {
 save: function(req, res)
 {
     var params = req.body;
+    
     var user = new User();
 
     user.name = params.name;
     user.email = params.email;
     user.age = params.age;
-
+    user.image = params.image;
 
     user.save((err, userStored) => {
         if (err) {
+            console.log(err);
+
+            console.log("error", err);
             return res.status(500).send({
                 message: "Error al guardar el usuario"
             });
@@ -47,7 +51,70 @@ save: function(req, res)
 uploadAvatar: function(req,res)
 {
     console.log(JSON.stringify(req.files.file0.path));
+    var file = req.files.file0.path;
+    var file_split = file.split('/');
+    var file_name = file_split[2];
+    var ext_split = file_name.split('\.');
+    console.log(ext_split);
+    var file_ext = ext_split[1];
+    console.log(file_ext);
 
+    if (file_ext != 'png' && file_ext != 'jpg' && file_ext != 'jpeg' && file_ext != 'gif') {
+        fs.unlink(file, (err) => {
+
+            return res.status(400).send({
+                status: 'error',
+                message: 'La extensión del archivo no es valida.'
+            });
+
+        });
+
+    } 
+    else 
+    {
+        
+
+        
+        
+        return res.status(200).send({
+            status: 'success',
+            image: file_name,
+            
+        });
+        this.saveImg();
+    }
+
+
+     
+},
+
+
+saveImg: function(req, res) {
+    console.log("saveimage ejecutandose");
+    var userId = req.body.id;
+   // console.log('id', roomId);
+    var file_name = req.body.image;
+
+    if (file_name) 
+    {
+        Room.findOneAndUpdate({ _id: userId }, { image: file_name }, { new: true }, (err, userUpdate) => {
+            if (err || !userUpdate) 
+            {
+                // Devolver respuesta
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'error creating image'
+                });
+            }
+        });
+        // Devolver respuesta
+        return res.status(200).send(
+            {
+            status: 'success',
+            image1: file_name,
+        });
+
+    }
 },
 
 getUser: function(req,res)
