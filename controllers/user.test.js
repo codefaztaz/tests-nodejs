@@ -9,6 +9,7 @@ const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 const rewire = require('rewire');
 chaiHttp = require('chai-http');
+var fs = require('fs');
 
 const server = require('../app')
 chai.use(chaiHttp);
@@ -152,9 +153,23 @@ describe('users', ()=>{
             });
        });
 
+       it('it should upload an image into a user by id', (done)=>{
+        let userId="62d8587302d62e5aab65e266";
+        chai.request('http://localhost:3999/api/')
+            .post('upload-avatar/'+ userId)
+            .attach('file0',
+        fs.readFileSync('/home/bug/Documentos/roomd2.jpg'),
+        'roomd2.jpg')
+            .end((err,res)=>{
+                res.should.have.status(200);
+                      res.body.should.be.a('object');
+                      res.body.should.have.property('status').eql('success');
+            done();
+            });
+       });
 
 
-
+       
 });
 
 })
