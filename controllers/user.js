@@ -12,19 +12,16 @@ var controller = {
 save: function(req, res)
 {
     var params = req.body;
-    
     var user = new User();
 
     user.name = params.name;
     user.email = params.email;
     user.age = params.age;
-    user.image = params.image;
+    user.image = null;
+
 
     user.save((err, userStored) => {
         if (err) {
-            console.log(err);
-
-            console.log("error", err);
             return res.status(500).send({
                 message: "Error al guardar el usuario"
             });
@@ -50,10 +47,24 @@ save: function(req, res)
 
 uploadAvatar: function(req,res)
 {
-    console.log(JSON.stringify(req.files.file0.path));
+    var params = JSON.parse(JSON.stringify(req.body));
+    var userId = req.params.id;
+
+   
+     
+    console.log("userid", userId);
+
     var file = req.files.file0.path;
+    console.log(JSON.stringify(req.files.file0.path));
+
+        // // ** Adventencia ** En linux o mac
     var file_split = file.split('/');
-    var file_name = file_split[2];
+
+    // // Nombre del archivo
+        var file_name = file_split[2];
+    // console.log(file_name);
+
+    // // Extensión del archivo
     var ext_split = file_name.split('\.');
     console.log(ext_split);
     var file_ext = ext_split[1];
@@ -69,52 +80,43 @@ uploadAvatar: function(req,res)
 
         });
 
-    } 
-    else 
+    } else 
     {
-        
 
-        
-        
-        return res.status(200).send({
-            status: 'success',
-            image: file_name,
+       
+            // return res.status(200).send({
+            //     status: 'success',
+            //     image: file_name,
+            // });
             
-        });
-        this.saveImg();
-    }
 
-
-     
-},
-
-
-saveImg: function(req, res) {
-    console.log("saveimage ejecutandose");
-    var userId = req.body.id;
-   // console.log('id', roomId);
-    var file_name = req.body.image;
-
-    if (file_name) 
-    {
-        Room.findOneAndUpdate({ _id: userId }, { image: file_name }, { new: true }, (err, userUpdate) => {
-            if (err || !userUpdate) 
+            if (file_name) 
             {
-                // Devolver respuesta
-                return res.status(500).send({
-                    status: 'error',
-                    message: 'error creating image'
+                
+                User.findOneAndUpdate({ _id: userId }, { image: file_name }, { new: true }, (err, userUpdate) => {
+                    if (err || !userUpdate) 
+                    {
+                        console.log(err);
+                        // Devolver respuesta
+                        return res.status(500).send({
+                            status: 'error',
+                            message: 'Error al guardar la habitación'
+                        });
+                    }                  
+                 
                 });
-            }
-        });
-        // Devolver respuesta
-        return res.status(200).send(
-            {
-            status: 'success',
-            image1: file_name,
-        });
+                return res.status(200).send({
+                    status: 'success',
+                    image: file_name,
+
+                });
+            
+              
+
+            }    
 
     }
+
 },
 
 getUser: function(req,res)
